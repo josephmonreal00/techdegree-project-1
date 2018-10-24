@@ -102,7 +102,6 @@ var quotes = [
     }
 ];
 
-
 /*  
     Function: 
     
@@ -150,6 +149,42 @@ function getRandomQuote(array) {                                            // S
     
 }
 
+/*  
+    Function: 
+    
+        Declaration: changeColor()
+        
+        Parameter: None 
+        
+        returns: None
+    
+    Variables: 
+    
+        r: stores a random number
+        
+        g: stores a random number
+        
+        b: stores a random number
+    
+    Description: 
+    
+        When function is called it will manipulate the background color of both the body tag
+        and button tag.
+    
+*/
+
+function changeColor() {
+    
+    var r = Math.floor(Math.random() * 256) + 1;
+    var g = Math.floor(Math.random() * 256) + 1;
+    var b = Math.floor(Math.random() * 256) + 1;
+    
+    // rgb(255, 255, 255);
+    var rgb = "rgb(" + r + "," + g + "," + b + ")";
+    document.getElementById("loadQuote").style.background= rgb;
+    document.body.style.backgroundColor = rgb;
+    
+}
 
 /*  
     Function: 
@@ -188,11 +223,10 @@ function getRandomQuote(array) {                                            // S
         Step 7.     'node' is an object with properties. The innerHTML property is one of them and it allows us to store the new 
                     'html' content generated into the existing HTML tag within our html file.'node' is an element/object representing the node within the HTML file that will have it's content replaced
 */
-
  
 function printQuote() {                                                         // Step 1
     
-    var get_quote = getRandomQuote(quotes);                             
+    var get_quote = getRandomQuote(quotes); 
     
     var node = document.getElementById("quote-box");                            // Step 2
     
@@ -233,9 +267,12 @@ function printQuote() {                                                         
     }
     
     node.innerHTML = html;                                                      // Step 7
+    changeColor();
 }
 
-
+// The window object is using its 'setInterval' method to call the printquote() function above
+// every other 8000 milliseconds
+var intervalID = window.setInterval(printQuote, 8000);
 
 // This event listener will respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
